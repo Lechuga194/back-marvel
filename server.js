@@ -13,7 +13,6 @@ app.use(cors())
 
 //Endpoints
 const heroes = require('./controllers/heroes');
-const { createBrotliDecompress } = require('zlib');
 
 //Knex
 const knex = require('knex')({
@@ -30,7 +29,6 @@ const knex = require('knex')({
 app.get('/', (req, res) => res.send('¡Hola Antware!'))
 
 app.get('/getHeroes', (req, res) => {
-    console.log("Obteniendo heroes")
     heroes.getHeroes(req, res, knex)
 })
 
