@@ -28,22 +28,27 @@ const knex = require('knex')({
 
 app.get('/', (req, res) => res.send('¡Hola Antware!'))
 
-app.get('/getHeroes', (req, res) => {
-    heroes.getHeroes(req, res, knex)
+//Obtiene todos los heroes
+app.get('/getHeros', (req, res) => {
+    heroes.getHeros(req, res, knex)
 })
 
+//Obtiene un heroe por medio de su ID
 app.get('/getHero/:id', (req, res) => {
   heroes.getHero(req, res, knex)
 })
 
+//Crea un heroe
 app.post('/createHero', (req, res) => {
     heroes.createHero(req, res, knex)
 })
 
+//Elimina un heroe por medio de su ID
 app.delete('/deleteHero/:id', (req, res) => {
     heroes.deleteHero(req, res, knex)
 })
 
+//Actualiza un heroe
 app.post('/updateHero', (req, res) => {
   heroes.updateHero(req, res, knex)
 })

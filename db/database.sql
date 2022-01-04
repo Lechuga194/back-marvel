@@ -1,12 +1,12 @@
-CREATE TABLE heroe (
+CREATE TABLE hero (
     id SERIAL NOT NULL PRIMARY KEY,
-    nombre VARCHAR(150) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     alias VARCHAR(150) NOT NULL,
-    imagen TEXT,
-    descripcion TEXT
+    image TEXT,
+    details TEXT
 );
 
-INSERT INTO heroe VALUES (
+INSERT INTO hero VALUES (
     DEFAULT,
     'Steve Rogers',
     'Captain America',
@@ -14,7 +14,7 @@ INSERT INTO heroe VALUES (
     'Captain America is a superhero appearing in American comic books published by Marvel Comics. Created by cartoonists Joe Simon and Jack Kirby, the character first appeared in Captain America Comics #1 (cover dated March 1941) from Timely Comics, a predecessor of Marvel Comics.'
 );
 
-INSERT INTO heroe VALUES (
+INSERT INTO hero VALUES (
     DEFAULT,
     'Robert Bruce Banner',
     'Hulk',
@@ -22,7 +22,7 @@ INSERT INTO heroe VALUES (
     'The Hulk is a fictional superhero appearing in publications by the American publisher Marvel Comics. Created by writer Stan Lee and artist Jack Kirby, the character first appeared in the debut issue of The Incredible Hulk (May 1962). In his comic book appearances, the character is both the Hulk, a green-skinned, hulking and muscular humanoid possessing a vast degree of physical strength, and his alter ego Dr. Robert Bruce Banner, a physically weak, socially withdrawn, and emotionally reserved physicist. The two exist as independent dissociative personalities, and resent each other.'
 );
 
-INSERT INTO heroe VALUES (
+INSERT INTO hero VALUES (
     DEFAULT,
     'Anthony Edward Stark',
     'Iron Man',
@@ -30,7 +30,7 @@ INSERT INTO heroe VALUES (
     'Iron Man is a superhero appearing in American comic books published by Marvel Comics. The character was co-created by writer and editor Stan Lee, developed by scripter Larry Lieber, and designed by artists Don Heck and Jack Kirby. The character made his first appearance in Tales of Suspense #39 (cover dated March 1963), and received his own title in Iron Man #1 (May 1968). Also in 1963, the character founded the Avengers alongside Thor, Ant-Man, Wasp and the Hulk.'
 );
 
-INSERT INTO heroe VALUES (
+INSERT INTO hero VALUES (
     DEFAULT,
     'Peter Parker',
     'Spider-Man',

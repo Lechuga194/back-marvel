@@ -1,63 +1,61 @@
-const { default: knex } = require("knex");
-
-const getHeroes = (req, res, knex) => {
-    return knex.select('*').from('heroe')
+const getHeros = (req, res, knex) => {
+    return knex.select('*').from('hero')
         .then(data => res.status(200).json(data))
         .catch(err => {
             console.log(err);
-            res.status(400).json('Ocurrio un error al recuperar heroes')
+            res.status(500).json('An error occurred while getting the hero list')
         })
 }
 
 const getHero = (req, res, knex) => {
-    return knex.select('*').from('heroe').where('id', req.params.id)
+    return knex.select('*').from('hero').where('id', req.params.id)
     .then(data => {
         if(data.length > 0)
             res.status(200).json(data)
         else
-            res.status(400).json('No se encontro al heroe')    
+            res.status(400).json('Hero not found')    
     })    
     .catch(err => {
         console.log(err)
-        res.status(400).json('Ocurrio un error al recuperar el heroe')
+        res.status(500).json('An error occurred while getting the hero')
     })
 }
 
 const createHero = (req, res, knex) => {
     const { name, alias, image, details} = req.body
-    knex('heroe')
+    knex('hero')
     .returning('*')
     .insert({
-        nombre: name,
+        name: name,
         alias: alias,
-        imagen: image,
-        descripcion: details
-    }).then(hero => {
-        res.json(hero[0])
+        image: image,
+        details: details
+    }).then(data => {
+        res.json(data[0])
     }).catch(err => {
         console.log(err)
-        res.status(500).json('Ocurrio un error al agregar el heroe')
+        res.status(500).json('An error occurred while adding the hero')
     })
 }
 
 const updateHero = (req, res, knex) => {
     const { id, name, alias, image, details} = req.body
-    knex('heroe').update({
-        nombre: name,
+    knex('hero').update({
+        name: name,
         alias: alias,
-        imagen: image,
-        descripcion: details
+        image: image,
+        details: details
     }).where("id", id)
     .then(data => res.status(200).json(data))
     .catch(err => {
         console.log(err)
-        res.status(400).json('Ocurrio un error al recuperar el heroe')
+        res.status(500).json('An error occurred while updating the hero')
     })
 }
 
 const deleteHero = (req, res, knex) => {
     const id = req.params.id
-    knex('heroe')
+    knex('hero')
     .where('id', id)
     .del()
     .then(data => {
@@ -65,12 +63,12 @@ const deleteHero = (req, res, knex) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json('Ocurrio un error al eliminar el heroe')
+        res.status(500).json('An error occurred while deleting the hero')
     })
 }
 
 module.exports = {
-    getHeroes,
+    getHeros,
     getHero,
     createHero,
     updateHero,
