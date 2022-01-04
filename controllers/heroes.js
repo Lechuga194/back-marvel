@@ -1,5 +1,5 @@
 const getHeros = (req, res, knex) => {
-    return knex.select('*').from('hero')
+    return knex.select('*').from('hero').orderBy('id')
         .then(data => res.status(200).json(data))
         .catch(err => {
             console.log(err);
@@ -23,6 +23,8 @@ const getHero = (req, res, knex) => {
 
 const createHero = (req, res, knex) => {
     const { name, alias, image, details} = req.body
+    if(alias == '' || image == '')
+        return res.status(405).json('Not complete data')
     knex('hero')
     .returning('*')
     .insert({
