@@ -9,6 +9,20 @@ const getHeroes = (req, res, knex) => {
         })
 }
 
+const getHero = (req, res, knex) => {
+    return knex.select('*').from('heroe').where('id', req.params.id)
+    .then(data => {
+        if(data.length > 0)
+            res.status(200).json(data)
+        else
+            res.status(400).json('No se encontro al heroe')    
+    })    
+    .catch(err => {
+        console.log(err)
+        res.status(400).json('Ocurrio un error al recuperar el heroe')
+    })
+}
+
 const createHero = (req, res, knex) => {
     const { name, alias, image, details} = req.body
     knex('heroe')
@@ -23,6 +37,21 @@ const createHero = (req, res, knex) => {
     }).catch(err => {
         console.log(err)
         res.status(500).json('Ocurrio un error al agregar el heroe')
+    })
+}
+
+const updateHero = (req, res, knex) => {
+    const { id, name, alias, image, details} = req.body
+    knex('heroe').update({
+        nombre: name,
+        alias: alias,
+        imagen: image,
+        descripcion: details
+    }).where("id", id)
+    .then(data => res.status(200).json(data))
+    .catch(err => {
+        console.log(err)
+        res.status(400).json('Ocurrio un error al recuperar el heroe')
     })
 }
 
@@ -42,6 +71,8 @@ const deleteHero = (req, res, knex) => {
 
 module.exports = {
     getHeroes,
+    getHero,
     createHero,
+    updateHero,
     deleteHero,
 }
