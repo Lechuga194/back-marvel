@@ -32,4 +32,12 @@ app.get('/getHeroes', (req, res) => {
     heroes.getHeroes(req, res, knex)
 })
 
+app.post('/createHero', (req, res) => {
+    heroes.createHero(req, res, knex)
+})
+
+app.delete('/deleteHero/:id', (req, res) => {
+    heroes.deleteHero(req, res, knex)
+})
+
 app.listen(PORT, () => console.log(`Server Running in port ${PORT}`));
